@@ -1,0 +1,77 @@
+{
+  "Anger": {
+      "synonyms": [
+          "anger", "annoyance", "enraged", "exasperation", "frenzy", "frustration", 
+          "furious", "fury", "heated", "hostility", "incensed", "indignation", 
+          "infuriated", "irritable", "irritation", "mad", "outrage", "pissed off", 
+          "rage", "resent", "resentment", "ticked off", "upset", "worked up", 
+          "wrath", "wrathfulness"
+      ]
+  },
+  "Disgust": {
+      "synonyms": [
+          "abhorrence", "aversion", "contempt", "disgust", "distaste", "gives me the creeps", 
+          "grossed out", "horror", "icky", "leaves a bad taste in my mouth", "loathing", 
+          "makes my skin crawl", "nausea", "repugnance", "repulsion", "sickened", 
+          "turned off", "turns my stomach", "unpleasant", "yucky"
+      ]
+  },
+  "Fear": {
+      "synonyms": [
+          "afraid", "alarm", "alarmed", "anxiety", "concerned", "creeped out", "fear", 
+          "fearful", "freaked out", "frightened", "horror", "jumpy", "nervous", "on edge", 
+          "panic", "panicked", "scared", "scared stiff", "terrified", "uncomfortable", 
+          "uneasy", "worried"
+      ]
+  },
+  "Joy": {
+      "synonyms": [
+          "bright", "cheerful", "content", "delighted", "excited", "feeling awesome", 
+          "glad", "good", "good mood", "good vibe", "happy", "joy", "on cloud nine", 
+          "over the moon", "overjoyed", "pleasant", "pumped up", "satisfied", 
+          "super happy", "thrilled", "upbeat", "vibing"
+      ]
+  },
+  "Proud": {
+      "synonyms": [
+          "boast", "celebrate", "content", "dignified", "dignity", "elated", 
+          "glorify", "glorious", "glory", "happily", "honor", "honored", 
+          "pleased", "pride", "pride oneself", "proud", "proudly", "satisfaction", 
+          "satisfied", "self-esteem", "self-respect", "self-satisfied", "triumphant", 
+          "triumphantly"
+      ]
+  },
+  "Shame": {
+      "synonyms": [
+          "abase", "abasement", "ashamed", "disgrace", "disgraced", "disgracefully", 
+          "dishonor", "dishonorably", "dishonored", "embarrass", "embarrassed", 
+          "embarrassingly", "embarrassment", "guilt", "guilty", "humiliate", 
+          "humiliated", "humiliatingly", "humiliation", "ignominy", "mortification", 
+          "mortified", "mortify", "mortifyingly", "regret", "regretful", 
+          "self-conscious", "self-consciousness", "shame", "shamefully"
+      ]
+  },
+  "Excited": {
+      "synonyms": [
+          "agitate", "animated", "anticipation", "arouse", "aroused", "cheer up", 
+          "eagerly", "eagerness", "ecstatic", "ecstatically", "elated", "elatedly", 
+          "elation", "electrify", "energize", "enthusiasm", "enthusiastic", 
+          "enthusiastically", "excited", "excitedly", "excitement", "exhilarate", 
+          "exhilarated", "exhilaration", "overjoyed", "pump up", "pumped", "riled up", 
+          "stir", "thrill", "thrilled"
+      ]
+  },
+  "Envy": {
+      "synonyms": [
+          "animosity", "be jealous of", "be possessive of", "begrudge", "begrudgingly", 
+          "bitter", "bitterness", "covet", "covetous", "covetously", "covetousness", 
+          "crave", "craving", "desire", "desirous", "desirously", "discontent", 
+          "discontented", "dissatisfied", "envious", "enviously", "envy", "feel envious of", 
+          "frustrated", "green-eyed", "grudge", "grudging", "hatred", "ill will", 
+          "insecure", "jealous", "jealously", "jealousy", "long for", "longing", 
+          "longingly", "lust after", "malice", "malicious", "resent", "resentful", 
+          "resentfully", "resentment", "spite", "spiteful", "spitefully", "want", 
+          "wish for", "yearn", "yearning"
+      ]
+  }
+}
