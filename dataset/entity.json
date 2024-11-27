@@ -73,5 +73,31 @@
           "resentfully", "resentment", "spite", "spiteful", "spitefully", "want", 
           "wish for", "yearn", "yearning"
       ]
-  }
+  },"Sadness": {
+        "synonyms": [
+            "sad",
+            "blue",
+            "low",
+            "crying",
+            "teary",
+            "hurt",
+            "lonely",
+            "empty",
+            "lost",
+            "heartbroken",
+            "down",
+            "upset",
+            "unhappy",
+            "grieving",
+            "mourning",
+            "regretful",
+            "melancholy",
+            "heavy",
+            "pained",
+            "broken",
+            "glum",
+            "dismal",
+            "somber",
+            "hopeless"
+        ]}
 }
