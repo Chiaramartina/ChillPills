@@ -1,0 +1,680 @@
+{
+    "emozioni": {
+        "gioia": {
+            "synonyms": [
+                "felicit\u00e0",
+                "allegria",
+                "euforia"
+            ],
+            "antonyms": [
+                "tristezza"
+            ],
+            "hyponyms": [
+                "soddisfazione",
+                "entusiasmo",
+                "serenit\u00e0",
+                "gratitudine"
+            ],
+            "hypernyms": [
+                "emozione positiva"
+            ],
+            "details": "La gioia è uno stato emotivo caratterizzato da piacere, felicità e soddisfazione.",
+            "related": [
+                "speranza",
+                "amore"
+            ]
+        },
+        "tristezza": {
+            "synonyms": [
+                "malinconia",
+                "sofferenza",
+                "abbattimento"
+            ],
+            "antonyms": [
+                "gioia"
+            ],
+            "hyponyms": [
+                "nostalgia",
+                "desolazione",
+                "rimpianto",
+                "apatia"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "La tristezza è un'emozione negativa associata a perdita, dolore o delusione.",
+            "related": [
+                "disperazione",
+                "vergogna"
+            ]
+        },
+        "rabbia": {
+            "synonyms": [
+                "ira",
+                "collera",
+                "frustrazione"
+            ],
+            "antonyms": [
+                "calma"
+            ],
+            "hyponyms": [
+                "risentimento",
+                "furia",
+                "esasperazione",
+                "indignazione"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "La rabbia è un'emozione intensa legata a ingiustizie o frustrazioni percepite."
+        },
+        "paura": {
+            "synonyms": [
+                "timore",
+                "ansia",
+                "terrore"
+            ],
+            "antonyms": [
+                "coraggio"
+            ],
+            "hyponyms": [
+                "preoccupazione",
+                "angoscia",
+                "panico",
+                "insicurezza"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "La paura è una risposta emotiva a minacce o pericoli percepiti.",
+            "related": [
+                "ansia",
+                "disgusto"
+            ]
+        },
+        "disgusto": {
+            "synonyms": [
+                "ripugnanza",
+                "avversione",
+                "repulsione"
+            ],
+            "antonyms": [
+                "attrazione"
+            ],
+            "hyponyms": [
+                "disprezzo",
+                "fastidio",
+                "nausea",
+                "rifiuto"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "Il disgusto è un'emozione provocata da qualcosa di sgradevole o offensivo."
+        },
+        "sorpresa": {
+            "synonyms": [
+                "stupore",
+                "meraviglia",
+                "sbalordimento"
+            ],
+            "antonyms": [
+                "attesa"
+            ],
+            "hyponyms": [
+                "sconcerto",
+                "incredulit\u00e0",
+                "curiosit\u00e0",
+                "emozione improvvisa"
+            ],
+            "hypernyms": [
+                "emozione neutra"
+            ],
+            "details": "La sorpresa è una risposta emotiva a eventi o situazioni inaspettate."
+        },
+        "amore": {
+            "synonyms": [
+                "affetto",
+                "passione",
+                "adorazione"
+            ],
+            "antonyms": [
+                "odio"
+            ],
+            "hyponyms": [
+                "tenerezza",
+                "infatuazione",
+                "ammirazione",
+                "compassione"
+            ],
+            "hypernyms": [
+                "sentimento positivo"
+            ],
+            "details": "L'amore è un forte legame emotivo caratterizzato da affetto, passione o cura."
+        },
+        "odio": {
+            "synonyms": [
+                "disprezzo",
+                "avversione",
+                "repulsione"
+            ],
+            "antonyms": [
+                "amore"
+            ],
+            "hyponyms": [
+                "rancore",
+                "ostilit\u00e0",
+                "invidia",
+                "gelosia"
+            ],
+            "hypernyms": [
+                "sentimento negativo"
+            ],
+            "details": "L'odio è un sentimento intenso di antipatia o avversione."
+        },
+        "calma": {
+            "synonyms": [
+                "serenit\u00e0",
+                "tranquillit\u00e0",
+                "equilibrio"
+            ],
+            "antonyms": [
+                "rabbia"
+            ],
+            "hyponyms": [
+                "pace interiore",
+                "rilassamento",
+                "indifferenza"
+            ],
+            "hypernyms": [
+                "stato mentale positivo"
+            ],
+            "details": "La calma è uno stato di tranquillità mentale e di pace.",
+            "related": [
+                "fiducia",
+                "gratitudine"
+            ]
+        },
+        "ansia": {
+            "synonyms": [
+                "preoccupazione",
+                "angoscia",
+                "inquietudine"
+            ],
+            "antonyms": [
+                "serenit\u00e0"
+            ],
+            "hyponyms": [
+                "paura del futuro",
+                "nervosismo",
+                "agitazione"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "L'ansia è una sensazione di preoccupazione o di disagio per gli esiti incerti."
+        },
+        "orgoglio": {
+            "synonyms": [
+                "fierezza",
+                "soddisfazione",
+                "autostima"
+            ],
+            "antonyms": [
+                "vergogna"
+            ],
+            "hyponyms": [
+                "dignit\u00e0",
+                "amor proprio",
+                "superbia"
+            ],
+            "hypernyms": [
+                "stato mentale positivo"
+            ],
+            "details": "L'orgoglio è un sentimento di soddisfazione o di rispetto per se stessi."
+        },
+        "vergogna": {
+            "synonyms": [
+                "umiliazione",
+                "imbarazzo",
+                "colpa"
+            ],
+            "antonyms": [
+                "orgoglio"
+            ],
+            "hyponyms": [
+                "rimorso",
+                "disagio",
+                "confusione"
+            ],
+            "hypernyms": [
+                "stato mentale negativo"
+            ],
+            "details": "La vergogna è un'emozione causata da un senso di colpa o di fallimento."
+        },
+        "speranza": {
+            "synonyms": [
+                "fiducia",
+                "ottimismo",
+                "aspettativa"
+            ],
+            "antonyms": [
+                "disperazione"
+            ],
+            "hyponyms": [
+                "sogno",
+                "desiderio",
+                "illusione"
+            ],
+            "hypernyms": [
+                "stato mentale positivo"
+            ],
+            "details": "La speranza è uno stato d'animo ottimista basato sulle aspettative di risultati positivi."
+        },
+        "disperazione": {
+            "synonyms": [
+                "scoraggiamento",
+                "pessimismo",
+                "abbattimento"
+            ],
+            "antonyms": [
+                "speranza"
+            ],
+            "hyponyms": [
+                "rassegnazione",
+                "assenza di fiducia",
+                "perdita"
+            ],
+            "hypernyms": [
+                "stato mentale negativo"
+            ],
+            "details": "La disperazione è un sentimento di mancanza di speranza e di perdita della fede."
+        },
+        "empatia": {
+            "synonyms": [
+                "comprensione",
+                "compassione",
+                "simpatia"
+            ],
+            "antonyms": [
+                "indifferenza"
+            ],
+            "hyponyms": [
+                "altruismo",
+                "solidariet\u00e0",
+                "dedizione"
+            ],
+            "hypernyms": [
+                "atteggiamento positivo"
+            ],
+            "details": "L'empatia è la capacità di comprendere e condividere i sentimenti degli altri."
+        },
+        "indifferenza": {
+            "synonyms": [
+                "apatia",
+                "insensibilit\u00e0",
+                "disinteresse"
+            ],
+            "antonyms": [
+                "empatia"
+            ],
+            "hyponyms": [
+                "apatia emotiva",
+                "distacco",
+                "freddezza"
+            ],
+            "hypernyms": [
+                "stato mentale neutro"
+            ],
+            "details": "L'indifferenza è una mancanza di interesse, preoccupazione o simpatia."
+        },
+        "gratitudine": {
+            "synonyms": [
+                "riconoscenza",
+                "apprezzamento",
+                "debito emotivo"
+            ],
+            "antonyms": [
+                "ingratitudine"
+            ],
+            "hyponyms": [
+                "ringraziamento",
+                "sentimento di gratitudine"
+            ],
+            "hypernyms": [
+                "atteggiamento positivo"
+            ],
+            "details": "La gratitudine è la qualità di essere grati e di mostrare apprezzamento."
+        },
+        "invidia": {
+            "synonyms": [
+                "gelosia",
+                "rancore",
+                "scontentezza"
+            ],
+            "antonyms": [
+                "ammirazione"
+            ],
+            "hyponyms": [
+                "desiderio di possesso",
+                "frustrazione sociale"
+            ],
+            "hypernyms": [
+                "atteggiamento negativo"
+            ],
+            "details": "L'invidia è il sentimento di malcontento o risentimento causato dal successo o dai beni di qualcun altro."
+        },
+        "compassione": {
+            "synonyms": [
+                "piet\u00e0",
+                "simpatia",
+                "empatia"
+            ],
+            "antonyms": [
+                "indifferenza"
+            ],
+            "hyponyms": [
+                "senso di solidariet\u00e0",
+                "tenerezza"
+            ],
+            "hypernyms": [
+                "atteggiamento positivo"
+            ],
+            "details": "La compassione è una profonda consapevolezza della sofferenza degli altri e il desiderio di aiutarli."
+        },
+        "curiosit\u00e0": {
+            "synonyms": [
+                "interesse",
+                "meraviglia",
+                "ricerca"
+            ],
+            "antonyms": [
+                "apatia"
+            ],
+            "hyponyms": [
+                "desiderio di sapere",
+                "investigazione"
+            ],
+            "hypernyms": [
+                "emozione neutra"
+            ],
+            "details": "La curiosità è un forte desiderio di imparare o conoscere qualcosa."
+        },
+        "tenerezza": {
+            "synonyms": [
+                "affetto",
+                "dolcezza",
+                "calore"
+            ],
+            "antonyms": [
+                "durezza"
+            ],
+            "hyponyms": [
+                "gentilezza",
+                "carezza"
+            ],
+            "hypernyms": [
+                "sentimento positivo"
+            ],
+            "details": "La tenerezza è un sentimento gentile di affetto o calore."
+        },
+        "gelosia": {
+            "synonyms": [
+                "invidia",
+                "possessivit\u00e0",
+                "insicurezza"
+            ],
+            "antonyms": [
+                "fiducia"
+            ],
+            "hyponyms": [
+                "paura della perdita",
+                "frustrazione"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "La gelosia è un'emozione che nasce dalla paura di perdere qualcosa di prezioso a favore di qualcun altro."
+        },
+        "fiducia": {
+            "synonyms": [
+                "sicurezza",
+                "affidabilit\u00e0",
+                "ottimismo"
+            ],
+            "antonyms": [
+                "sospetto"
+            ],
+            "hyponyms": [
+                "fiducia in s\u00e9 stessi",
+                "fiducia negli altri"
+            ],
+            "hypernyms": [
+                "stato mentale positivo"
+            ],
+            "details": "La fiducia è la convinzione dell'affidabilità, della verità o della capacità di qualcuno o qualcosa."
+        },
+        "desiderio": {
+            "synonyms": [
+                "speranza"
+            ],
+            "antonyms": [
+                "disperazione",
+                "disprezzo"
+            ],
+            "hyponyms": [
+                "sogno",
+                "illusione"
+            ],
+            "hypernyms": [
+                "stato mentale positivo"
+            ],
+            "details": "TODO"
+        },
+        "stupore": {
+            "synonyms": [
+                "sorpresa",
+                "meraviglia",
+                "sbalordimento"
+            ],
+            "antonyms": [
+                "attesa",
+                "indifferenza",
+                "freddezza",
+                "distacco"
+            ],
+            "hyponyms": [
+                "sconcerto",
+                "incredulit\u00e0",
+                "curiosit\u00e0"
+            ],
+            "hypernyms": [
+                "emozione neutra"
+            ],
+            "details": "TODO"
+        },
+        "dolcezza": {
+            "synonyms": [
+                "affetto",
+                "tenerezza",
+                "calore",
+                "gioia",
+                "felicit\u00e0"
+            ],
+            "antonyms": [
+                "durezza",
+                "disgusto",
+                "ripugnanza"
+            ],
+            "hyponyms": [
+                "gentilezza",
+                "carezza"
+            ],
+            "hypernyms": [
+                "sentimento positivo"
+            ],
+            "details": "TODO"
+        },
+        "gentilezza": {
+            "synonyms": [
+                "affetto",
+                "dolcezza",
+                "calore"
+            ],
+            "antonyms": [
+                "durezza",
+                "sconcerto"
+            ],
+            "hyponyms": [
+                "carezza"
+            ],
+            "hypernyms": [
+                "sentimento positivo"
+            ],
+            "details": "TODO"
+        },
+        "felicit\u00e0": {
+            "synonyms": [
+                "gioia",
+                "allegria",
+                "euforia"
+            ],
+            "antonyms": [
+                "tristezza",
+                "scontentezza",
+                "malinconia",
+                "sofferenza",
+                "angoscia",
+                "avversione"
+            ],
+            "hyponyms": [
+                "soddisfazione",
+                "entusiasmo",
+                "serenit\u00e0",
+                "gratitudine"
+            ],
+            "hypernyms": [
+                "emozione positiva"
+            ],
+            "details": "TODO"
+        },
+        "piet\u00e0": {
+            "synonyms": [
+                "compassione",
+                "empatia"
+            ],
+            "antonyms": [
+                "indifferenza",
+                "disprezzo",
+                "freddezza",
+                "distacco"
+            ],
+            "hyponyms": [
+                "solidariet\u00e0",
+                "tenerezza"
+            ],
+            "hypernyms": [
+                "atteggiamento positivo"
+            ],
+            "details": "TODO"
+        },
+        "terrore": {
+            "synonyms": [
+                "paura",
+                "timore",
+                "ansia",
+                "panico",
+                "timore"
+            ],
+            "antonyms": [
+                "coraggio",
+                "speranza",
+                "fiducia",
+                "sicurezza",
+                "ottimismo"
+            ],
+            "hyponyms": [
+                "angoscia",
+                "insicurezza",
+                "panico"
+            ],
+            "hypernyms": [
+                "emozione negativa"
+            ],
+            "details": "TODO"
+        },
+        "imbarazzo": {
+            "synonyms": [
+                "vergogna",
+                "colpa",
+                "insicurezza",
+                "confusione",
+                "disagio"
+            ],
+            "antonyms": [
+                "fiducia",
+                "sicurezza"
+            ],
+            "hyponyms": [
+                "rimorso",
+                "disagio",
+                "confusione"
+            ],
+            "hypernyms": [
+                "stato mentale negativo"
+            ],
+            "details": "TODO"
+        },
+        "tranquillit\u00e0": {
+            "synonyms": [
+                "calma",
+                "serenit\u00e0",
+                "equilibrio",
+                "sicurezza",
+                "calma"
+            ],
+            "antonyms": [
+                "rabbia",
+                "ansia",
+                "preoccupazione",
+                "agitazione",
+                "nervosismo",
+                "confusione"
+            ],
+            "hyponyms": [
+                "pace interiore",
+                "rilassamento",
+                "indifferenza"
+            ],
+            "hypernyms": [
+                "stato mentale positivo"
+            ],
+            "details": "TODO"
+        },
+        "allegria": {
+            "synonyms": [
+                "gioia",
+                "felicit\u00e0",
+                "euforia"
+            ],
+            "antonyms": [
+                "tristezza",
+                "scontentezza",
+                "malinconia",
+                "sofferenza",
+                "angoscia",
+                "avversione"
+            ],
+            "hyponyms": [
+                "soddisfazione",
+                "entusiasmo",
+                "serenit\u00e0",
+                "gratitudine"
+            ],
+            "hypernyms": [
+                "emozione positiva"
+            ],
+            "details": "TODO"
+        }
+    }
+}
