@@ -1,0 +1,143 @@
+<html>
+    <head>
+
+        <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #mynetwork {
+            width: 100% !important;
+            height: calc(100vh - 10px) !important;
+            background-color: white;
+        }
+        </style>
+        
+
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 100%;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#CDB4DB", "id": "tenerezza", "label": "Tenerezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "affetto", "label": "Affetto", "shape": "dot"}, {"color": "#CDB4DB", "id": "dolcezza", "label": "Dolcezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "calore", "label": "Calore", "shape": "dot"}, {"color": "#CDB4DB", "id": "durezza", "label": "Durezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "gentilezza", "label": "Gentilezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "carezza", "label": "Carezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "sentimento positivo", "label": "Sentimento positivo", "shape": "dot"}, {"color": "#CDB4DB", "id": "gelosia", "label": "Gelosia", "shape": "dot"}, {"color": "#CDB4DB", "id": "invidia", "label": "Invidia", "shape": "dot"}, {"color": "#CDB4DB", "id": "possessivit\u00e0", "label": "Possessivit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "insicurezza", "label": "Insicurezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "fiducia", "label": "Fiducia", "shape": "dot"}, {"color": "#CDB4DB", "id": "paura della perdita", "label": "Paura della perdita", "shape": "dot"}, {"color": "#CDB4DB", "id": "frustrazione", "label": "Frustrazione", "shape": "dot"}, {"color": "#CDB4DB", "id": "emozione negativa", "label": "Emozione negativa", "shape": "dot"}, {"color": "#CDB4DB", "id": "sicurezza", "label": "Sicurezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "affidabilit\u00e0", "label": "Affidabilit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "ottimismo", "label": "Ottimismo", "shape": "dot"}, {"color": "#CDB4DB", "id": "sospetto", "label": "Sospetto", "shape": "dot"}, {"color": "#CDB4DB", "id": "fiducia in s\u00e9 stessi", "label": "Fiducia in s\u00e9 stessi", "shape": "dot"}, {"color": "#CDB4DB", "id": "fiducia negli altri", "label": "Fiducia negli altri", "shape": "dot"}, {"color": "#CDB4DB", "id": "stato mentale positivo", "label": "Stato mentale positivo", "shape": "dot"}, {"color": "#CDB4DB", "id": "desiderio", "label": "Desiderio", "shape": "dot"}, {"color": "#CDB4DB", "id": "speranza", "label": "Speranza", "shape": "dot"}, {"color": "#CDB4DB", "id": "disperazione", "label": "Disperazione", "shape": "dot"}, {"color": "#CDB4DB", "id": "disprezzo", "label": "Disprezzo", "shape": "dot"}, {"color": "#CDB4DB", "id": "sogno", "label": "Sogno", "shape": "dot"}, {"color": "#CDB4DB", "id": "illusione", "label": "Illusione", "shape": "dot"}, {"color": "#CDB4DB", "id": "stupore", "label": "Stupore", "shape": "dot"}, {"color": "#CDB4DB", "id": "sorpresa", "label": "Sorpresa", "shape": "dot"}, {"color": "#CDB4DB", "id": "meraviglia", "label": "Meraviglia", "shape": "dot"}, {"color": "#CDB4DB", "id": "sbalordimento", "label": "Sbalordimento", "shape": "dot"}, {"color": "#CDB4DB", "id": "attesa", "label": "Attesa", "shape": "dot"}, {"color": "#CDB4DB", "id": "indifferenza", "label": "Indifferenza", "shape": "dot"}, {"color": "#CDB4DB", "id": "freddezza", "label": "Freddezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "distacco", "label": "Distacco", "shape": "dot"}, {"color": "#CDB4DB", "id": "sconcerto", "label": "Sconcerto", "shape": "dot"}, {"color": "#CDB4DB", "id": "incredulit\u00e0", "label": "Incredulit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "curiosit\u00e0", "label": "Curiosit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "emozione neutra", "label": "Emozione neutra", "shape": "dot"}, {"color": "#CDB4DB", "id": "gioia", "label": "Gioia", "shape": "dot"}, {"color": "#CDB4DB", "id": "felicit\u00e0", "label": "Felicit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "disgusto", "label": "Disgusto", "shape": "dot"}, {"color": "#CDB4DB", "id": "ripugnanza", "label": "Ripugnanza", "shape": "dot"}, {"color": "#CDB4DB", "id": "allegria", "label": "Allegria", "shape": "dot"}, {"color": "#CDB4DB", "id": "euforia", "label": "Euforia", "shape": "dot"}, {"color": "#CDB4DB", "id": "tristezza", "label": "Tristezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "scontentezza", "label": "Scontentezza", "shape": "dot"}, {"color": "#CDB4DB", "id": "malinconia", "label": "Malinconia", "shape": "dot"}, {"color": "#CDB4DB", "id": "sofferenza", "label": "Sofferenza", "shape": "dot"}, {"color": "#CDB4DB", "id": "angoscia", "label": "Angoscia", "shape": "dot"}, {"color": "#CDB4DB", "id": "avversione", "label": "Avversione", "shape": "dot"}, {"color": "#CDB4DB", "id": "soddisfazione", "label": "Soddisfazione", "shape": "dot"}, {"color": "#CDB4DB", "id": "entusiasmo", "label": "Entusiasmo", "shape": "dot"}, {"color": "#CDB4DB", "id": "serenit\u00e0", "label": "Serenit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "gratitudine", "label": "Gratitudine", "shape": "dot"}, {"color": "#CDB4DB", "id": "emozione positiva", "label": "Emozione positiva", "shape": "dot"}, {"color": "#CDB4DB", "id": "piet\u00e0", "label": "Piet\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "compassione", "label": "Compassione", "shape": "dot"}, {"color": "#CDB4DB", "id": "empatia", "label": "Empatia", "shape": "dot"}, {"color": "#CDB4DB", "id": "solidariet\u00e0", "label": "Solidariet\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "atteggiamento positivo", "label": "Atteggiamento positivo", "shape": "dot"}, {"color": "#CDB4DB", "id": "terrore", "label": "Terrore", "shape": "dot"}, {"color": "#CDB4DB", "id": "paura", "label": "Paura", "shape": "dot"}, {"color": "#CDB4DB", "id": "timore", "label": "Timore", "shape": "dot"}, {"color": "#CDB4DB", "id": "ansia", "label": "Ansia", "shape": "dot"}, {"color": "#CDB4DB", "id": "panico", "label": "Panico", "shape": "dot"}, {"color": "#CDB4DB", "id": "coraggio", "label": "Coraggio", "shape": "dot"}, {"color": "#CDB4DB", "id": "imbarazzo", "label": "Imbarazzo", "shape": "dot"}, {"color": "#CDB4DB", "id": "vergogna", "label": "Vergogna", "shape": "dot"}, {"color": "#CDB4DB", "id": "colpa", "label": "Colpa", "shape": "dot"}, {"color": "#CDB4DB", "id": "confusione", "label": "Confusione", "shape": "dot"}, {"color": "#CDB4DB", "id": "disagio", "label": "Disagio", "shape": "dot"}, {"color": "#CDB4DB", "id": "rimorso", "label": "Rimorso", "shape": "dot"}, {"color": "#CDB4DB", "id": "stato mentale negativo", "label": "Stato mentale negativo", "shape": "dot"}, {"color": "#CDB4DB", "id": "tranquillit\u00e0", "label": "Tranquillit\u00e0", "shape": "dot"}, {"color": "#CDB4DB", "id": "calma", "label": "Calma", "shape": "dot"}, {"color": "#CDB4DB", "id": "equilibrio", "label": "Equilibrio", "shape": "dot"}, {"color": "#CDB4DB", "id": "rabbia", "label": "Rabbia", "shape": "dot"}, {"color": "#CDB4DB", "id": "preoccupazione", "label": "Preoccupazione", "shape": "dot"}, {"color": "#CDB4DB", "id": "agitazione", "label": "Agitazione", "shape": "dot"}, {"color": "#CDB4DB", "id": "nervosismo", "label": "Nervosismo", "shape": "dot"}, {"color": "#CDB4DB", "id": "pace interiore", "label": "Pace interiore", "shape": "dot"}, {"color": "#CDB4DB", "id": "rilassamento", "label": "Rilassamento", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"color": "#A7C957", "from": "tenerezza", "to": "affetto", "width": 3}, {"color": "#A7C957", "from": "tenerezza", "to": "dolcezza", "width": 3}, {"color": "#A7C957", "from": "tenerezza", "to": "calore", "width": 3}, {"color": "#BF3100", "from": "tenerezza", "to": "durezza", "width": 3}, {"color": "#F5BB00", "from": "tenerezza", "to": "gentilezza", "width": 3}, {"color": "#F5BB00", "from": "tenerezza", "to": "carezza", "width": 3}, {"color": "#1982C4", "from": "tenerezza", "to": "sentimento positivo", "width": 3}, {"color": "#A7C957", "from": "gelosia", "to": "invidia", "width": 3}, {"color": "#A7C957", "from": "gelosia", "to": "possessivit\u00e0", "width": 3}, {"color": "#A7C957", "from": "gelosia", "to": "insicurezza", "width": 3}, {"color": "#BF3100", "from": "gelosia", "to": "fiducia", "width": 3}, {"color": "#F5BB00", "from": "gelosia", "to": "paura della perdita", "width": 3}, {"color": "#F5BB00", "from": "gelosia", "to": "frustrazione", "width": 3}, {"color": "#1982C4", "from": "gelosia", "to": "emozione negativa", "width": 3}, {"color": "#A7C957", "from": "fiducia", "to": "sicurezza", "width": 3}, {"color": "#A7C957", "from": "fiducia", "to": "affidabilit\u00e0", "width": 3}, {"color": "#A7C957", "from": "fiducia", "to": "ottimismo", "width": 3}, {"color": "#BF3100", "from": "fiducia", "to": "sospetto", "width": 3}, {"color": "#F5BB00", "from": "fiducia", "to": "fiducia in s\u00e9 stessi", "width": 3}, {"color": "#F5BB00", "from": "fiducia", "to": "fiducia negli altri", "width": 3}, {"color": "#1982C4", "from": "fiducia", "to": "stato mentale positivo", "width": 3}, {"color": "#A7C957", "from": "desiderio", "to": "speranza", "width": 3}, {"color": "#BF3100", "from": "desiderio", "to": "disperazione", "width": 3}, {"color": "#BF3100", "from": "desiderio", "to": "disprezzo", "width": 3}, {"color": "#F5BB00", "from": "desiderio", "to": "sogno", "width": 3}, {"color": "#F5BB00", "from": "desiderio", "to": "illusione", "width": 3}, {"color": "#1982C4", "from": "desiderio", "to": "stato mentale positivo", "width": 3}, {"color": "#A7C957", "from": "stupore", "to": "sorpresa", "width": 3}, {"color": "#A7C957", "from": "stupore", "to": "meraviglia", "width": 3}, {"color": "#A7C957", "from": "stupore", "to": "sbalordimento", "width": 3}, {"color": "#BF3100", "from": "stupore", "to": "attesa", "width": 3}, {"color": "#BF3100", "from": "stupore", "to": "indifferenza", "width": 3}, {"color": "#BF3100", "from": "stupore", "to": "freddezza", "width": 3}, {"color": "#BF3100", "from": "stupore", "to": "distacco", "width": 3}, {"color": "#F5BB00", "from": "stupore", "to": "sconcerto", "width": 3}, {"color": "#F5BB00", "from": "stupore", "to": "incredulit\u00e0", "width": 3}, {"color": "#F5BB00", "from": "stupore", "to": "curiosit\u00e0", "width": 3}, {"color": "#1982C4", "from": "stupore", "to": "emozione neutra", "width": 3}, {"color": "#A7C957", "from": "dolcezza", "to": "affetto", "width": 3}, {"color": "#A7C957", "from": "dolcezza", "to": "calore", "width": 3}, {"color": "#A7C957", "from": "dolcezza", "to": "gioia", "width": 3}, {"color": "#A7C957", "from": "dolcezza", "to": "felicit\u00e0", "width": 3}, {"color": "#BF3100", "from": "dolcezza", "to": "durezza", "width": 3}, {"color": "#BF3100", "from": "dolcezza", "to": "disgusto", "width": 3}, {"color": "#BF3100", "from": "dolcezza", "to": "ripugnanza", "width": 3}, {"color": "#F5BB00", "from": "dolcezza", "to": "gentilezza", "width": 3}, {"color": "#F5BB00", "from": "dolcezza", "to": "carezza", "width": 3}, {"color": "#1982C4", "from": "dolcezza", "to": "sentimento positivo", "width": 3}, {"color": "#A7C957", "from": "gentilezza", "to": "affetto", "width": 3}, {"color": "#A7C957", "from": "gentilezza", "to": "calore", "width": 3}, {"color": "#BF3100", "from": "gentilezza", "to": "durezza", "width": 3}, {"color": "#BF3100", "from": "gentilezza", "to": "sconcerto", "width": 3}, {"color": "#F5BB00", "from": "gentilezza", "to": "carezza", "width": 3}, {"color": "#1982C4", "from": "gentilezza", "to": "sentimento positivo", "width": 3}, {"color": "#A7C957", "from": "felicit\u00e0", "to": "gioia", "width": 3}, {"color": "#A7C957", "from": "felicit\u00e0", "to": "allegria", "width": 3}, {"color": "#A7C957", "from": "felicit\u00e0", "to": "euforia", "width": 3}, {"color": "#BF3100", "from": "felicit\u00e0", "to": "tristezza", "width": 3}, {"color": "#BF3100", "from": "felicit\u00e0", "to": "scontentezza", "width": 3}, {"color": "#BF3100", "from": "felicit\u00e0", "to": "malinconia", "width": 3}, {"color": "#BF3100", "from": "felicit\u00e0", "to": "sofferenza", "width": 3}, {"color": "#BF3100", "from": "felicit\u00e0", "to": "angoscia", "width": 3}, {"color": "#BF3100", "from": "felicit\u00e0", "to": "avversione", "width": 3}, {"color": "#F5BB00", "from": "felicit\u00e0", "to": "soddisfazione", "width": 3}, {"color": "#F5BB00", "from": "felicit\u00e0", "to": "entusiasmo", "width": 3}, {"color": "#F5BB00", "from": "felicit\u00e0", "to": "serenit\u00e0", "width": 3}, {"color": "#F5BB00", "from": "felicit\u00e0", "to": "gratitudine", "width": 3}, {"color": "#1982C4", "from": "felicit\u00e0", "to": "emozione positiva", "width": 3}, {"color": "#A7C957", "from": "piet\u00e0", "to": "compassione", "width": 3}, {"color": "#A7C957", "from": "piet\u00e0", "to": "empatia", "width": 3}, {"color": "#BF3100", "from": "piet\u00e0", "to": "indifferenza", "width": 3}, {"color": "#BF3100", "from": "piet\u00e0", "to": "disprezzo", "width": 3}, {"color": "#BF3100", "from": "piet\u00e0", "to": "freddezza", "width": 3}, {"color": "#BF3100", "from": "piet\u00e0", "to": "distacco", "width": 3}, {"color": "#F5BB00", "from": "piet\u00e0", "to": "solidariet\u00e0", "width": 3}, {"color": "#F5BB00", "from": "piet\u00e0", "to": "tenerezza", "width": 3}, {"color": "#1982C4", "from": "piet\u00e0", "to": "atteggiamento positivo", "width": 3}, {"color": "#A7C957", "from": "terrore", "to": "paura", "width": 3}, {"color": "#A7C957", "from": "terrore", "to": "timore", "width": 3}, {"color": "#A7C957", "from": "terrore", "to": "ansia", "width": 3}, {"color": "#A7C957", "from": "terrore", "to": "panico", "width": 3}, {"color": "#BF3100", "from": "terrore", "to": "coraggio", "width": 3}, {"color": "#BF3100", "from": "terrore", "to": "speranza", "width": 3}, {"color": "#BF3100", "from": "terrore", "to": "fiducia", "width": 3}, {"color": "#BF3100", "from": "terrore", "to": "sicurezza", "width": 3}, {"color": "#BF3100", "from": "terrore", "to": "ottimismo", "width": 3}, {"color": "#F5BB00", "from": "terrore", "to": "angoscia", "width": 3}, {"color": "#F5BB00", "from": "terrore", "to": "insicurezza", "width": 3}, {"color": "#1982C4", "from": "terrore", "to": "emozione negativa", "width": 3}, {"color": "#A7C957", "from": "imbarazzo", "to": "vergogna", "width": 3}, {"color": "#A7C957", "from": "imbarazzo", "to": "colpa", "width": 3}, {"color": "#A7C957", "from": "imbarazzo", "to": "insicurezza", "width": 3}, {"color": "#A7C957", "from": "imbarazzo", "to": "confusione", "width": 3}, {"color": "#A7C957", "from": "imbarazzo", "to": "disagio", "width": 3}, {"color": "#BF3100", "from": "imbarazzo", "to": "fiducia", "width": 3}, {"color": "#BF3100", "from": "imbarazzo", "to": "sicurezza", "width": 3}, {"color": "#F5BB00", "from": "imbarazzo", "to": "rimorso", "width": 3}, {"color": "#1982C4", "from": "imbarazzo", "to": "stato mentale negativo", "width": 3}, {"color": "#A7C957", "from": "tranquillit\u00e0", "to": "calma", "width": 3}, {"color": "#A7C957", "from": "tranquillit\u00e0", "to": "serenit\u00e0", "width": 3}, {"color": "#A7C957", "from": "tranquillit\u00e0", "to": "equilibrio", "width": 3}, {"color": "#A7C957", "from": "tranquillit\u00e0", "to": "sicurezza", "width": 3}, {"color": "#BF3100", "from": "tranquillit\u00e0", "to": "rabbia", "width": 3}, {"color": "#BF3100", "from": "tranquillit\u00e0", "to": "ansia", "width": 3}, {"color": "#BF3100", "from": "tranquillit\u00e0", "to": "preoccupazione", "width": 3}, {"color": "#BF3100", "from": "tranquillit\u00e0", "to": "agitazione", "width": 3}, {"color": "#BF3100", "from": "tranquillit\u00e0", "to": "nervosismo", "width": 3}, {"color": "#BF3100", "from": "tranquillit\u00e0", "to": "confusione", "width": 3}, {"color": "#F5BB00", "from": "tranquillit\u00e0", "to": "pace interiore", "width": 3}, {"color": "#F5BB00", "from": "tranquillit\u00e0", "to": "rilassamento", "width": 3}, {"color": "#F5BB00", "from": "tranquillit\u00e0", "to": "indifferenza", "width": 3}, {"color": "#1982C4", "from": "tranquillit\u00e0", "to": "stato mentale positivo", "width": 3}, {"color": "#A7C957", "from": "allegria", "to": "gioia", "width": 3}, {"color": "#A7C957", "from": "allegria", "to": "euforia", "width": 3}, {"color": "#BF3100", "from": "allegria", "to": "tristezza", "width": 3}, {"color": "#BF3100", "from": "allegria", "to": "scontentezza", "width": 3}, {"color": "#BF3100", "from": "allegria", "to": "malinconia", "width": 3}, {"color": "#BF3100", "from": "allegria", "to": "sofferenza", "width": 3}, {"color": "#BF3100", "from": "allegria", "to": "angoscia", "width": 3}, {"color": "#BF3100", "from": "allegria", "to": "avversione", "width": 3}, {"color": "#F5BB00", "from": "allegria", "to": "soddisfazione", "width": 3}, {"color": "#F5BB00", "from": "allegria", "to": "entusiasmo", "width": 3}, {"color": "#F5BB00", "from": "allegria", "to": "serenit\u00e0", "width": 3}, {"color": "#F5BB00", "from": "allegria", "to": "gratitudine", "width": 3}, {"color": "#1982C4", "from": "allegria", "to": "emozione positiva", "width": 3}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"enabled": true}, "layout": {"improvedLayout": true}, "interaction": {"hover": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

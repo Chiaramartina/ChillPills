@@ -473,7 +473,7 @@ class EmotionApp(QMainWindow):
            alert("La parola '{word_to_search}' non è presente nella rete corrente.");
         }}
         """
-        # Eseguiamo lo script
+        
         self.web_view.page().runJavaScript(highlight_js)
 
 
