@@ -1,23 +1,37 @@
-# controller.py 
+# Importazione dei moduli e librerie necessarie
 import sys
 import os
 import json
-
-from PyQt5.QtWidgets import QFileDialog, QMessageBox
-from pyvis.network import Network
-from view.splash_view import SplashScreenView
-from view.emotion_view import EmotionAppView
-
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QFileDialog, QMessageBox  # Per dialoghi file e messaggi di avviso
+from pyvis.network import Network  # Per la creazione di reti interattive
+from view.splash_view import SplashScreenView  # Finestra di benvenuto (splash screen)
+from view.emotion_view import EmotionAppView  # Finestra principale dell'applicazione
+import threading
+import http.server
+import socketserver
 
 
 class MainController:
+    """
+    Classe principale che funge da controller per l'applicazione. Coordina il modello dei dati
+    (EmotionModel) e le viste (SplashScreenView, EmotionAppView).
+    """
+
     class EmotionModel:
+        """
+        Modello interno per gestire i dati delle emozioni. Carica e memorizza le emozioni 
+        e le loro relazioni a partire da un file JSON.
+        """
         def __init__(self):
             self.emotions = {}
 
         def load_from_json(self, file_path: str):
             """
-            Carica il file JSON e aggiorna self.emotions.
+            Carica il file JSON specificato e aggiorna il dizionario delle emozioni.
+
+            :param file_path: Percorso al file JSON contenente i dati delle emozioni.
+            :raises ValueError: Se il file JSON non contiene il formato atteso.
             """
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
@@ -26,17 +40,22 @@ class MainController:
                 self.emotions = data["emozioni"]
 
     def __init__(self, app):
-        self.app = app  # QApplication
+        """
+        Inizializza il controller principale e imposta il modello e le viste.
+
+        :param app: Oggetto QApplication per la gestione dell'interfaccia grafica.
+        """
+        self.app = app
         self.model = MainController.EmotionModel()
         
-        # Imposta un file JSON di default
-        self.json_file = "data\\extended_emotions.json"
+        # Percorso predefinito al file JSON contenente i dati delle emozioni
+        self.json_file = os.path.join("data", "extended_emotions.json")
 
-        # Crea la finestra di splash e la mostra
+        # Creazione e visualizzazione dello splash screen
         self.splash_view = SplashScreenView(controller=self)
         self.splash_view.show()
 
-        # Inizialmente non creiamo la finestra principale
+        # Riferimento alla finestra principale (non creata all'inizio)
         self.emotion_view = None
 
     def close_app(self):
@@ -47,7 +66,8 @@ class MainController:
 
     def load_wordnet_file(self):
         """
-        Permette all'utente di selezionare il file JSON da caricare nel Model.
+        Permette all'utente di selezionare un file JSON e aggiorna i dati del modello.
+        Mostra messaggi di errore in caso di file non valido.
         """
         file_name, _ = QFileDialog.getOpenFileName(
             self.splash_view,
@@ -56,34 +76,36 @@ class MainController:
             "JSON Files (*.json);;All Files (*)"
         )
 
+        file_name = os.path.normpath(file_name)  # Normalizza il percorso
+
         if file_name:
             try:
                 self.model.load_from_json(file_name)
-                # Se tutto va a buon fine, salviamo il path
+                # Salva il percorso del file caricato
                 self.json_file = file_name
             except Exception as e:
                 self.splash_view.show_error_message("Errore", f"Il file selezionato non è compatibile:\n{str(e)}")
 
     def start_app(self):
         """
-        Avvia la finestra principale EmotionAppView e chiude lo SplashScreen.
+        Avvia la finestra principale dell'applicazione e chiude lo splash screen.
         """
-        # Carichiamo il JSON di default se non è già stato caricato
         try:
+            # Carica i dati dal file JSON predefinito se non già caricati
             if not self.model.emotions:
                 self.model.load_from_json(self.json_file)
         except Exception as e:
             self.splash_view.show_error_message("Errore", f"Impossibile caricare {self.json_file}:\n{str(e)}")
             return
 
-        # Creiamo e mostriamo la finestra principale
+        # Crea e visualizza la finestra principale
         self.emotion_view = EmotionAppView(controller=self, model=self.model)
         self.emotion_view.show()
         self.splash_view.close()
 
     def show_info(self):
         """
-        Mostra le informazioni sull'app.
+        Mostra le informazioni sull'applicazione in un messaggio modale.
         """
         info_text = (
             "Emotion Network Visualizer v1.0<br>"
@@ -93,33 +115,33 @@ class MainController:
         )
         self.splash_view.show_info_message("Informazioni", info_text)
 
-    # -------------------------------------------------
-    # Metodi collegati ai pulsanti/azioni del main window (EmotionAppView)
-    # -------------------------------------------------
     def generate_selected_network(self):
         """
-        Genera la rete in base alle emozioni selezionate nella list_widget.
-        Salva la rete in un file HTML, poi la carica nella QWebEngineView.
+        Genera una rete interattiva basata sulle emozioni selezionate.
+        La rete è salvata come file HTML e caricata nella vista principale.
+
+        Funzionamento:
+        - I nodi rappresentano emozioni.
+        - Gli archi rappresentano relazioni come sinonimi, contrari, ecc.
         """
         if not self.emotion_view:
             return
 
+        # Ottiene le emozioni selezionate dalla vista
         selected_emotions = self.emotion_view.get_selected_emotions()
         if not selected_emotions:
             self.emotion_view.alert_no_emotions_selected()
             return
 
-        # Creiamo il network
+        # Creazione della rete utilizzando PyVis
         net = Network(height="100%", width="100%", directed=False)
-        net.set_options('''
-        {
+        net.set_options('''{
             "physics": { "enabled": true },
             "layout": { "improvedLayout": true },
             "interaction": { "hover": true }
-        }
-        ''')
+        }''')
 
-        # Colori
+        # Colori per i vari tipi di relazioni
         MAIN_COLOR = "#CDB4DB"
         SYN_COLOR = "#A7C957"
         ANT_COLOR = "#BF3100"
@@ -129,40 +151,41 @@ class MainController:
 
         details_text = "<b>Dettagli delle emozioni selezionate:</b><br><br>"
 
+        # Aggiunta di nodi e archi alla rete
         for emotion in selected_emotions:
             net.add_node(emotion, label=emotion.capitalize(), color=MAIN_COLOR)
             emotion_data = self.model.emotions.get(emotion, {})
             details_text += f"<b>{emotion.capitalize()}:</b> {emotion_data.get('details', 'N/A')}<br><br>"
 
-            # synonyms
+            # Sinonimi
             for syn in emotion_data.get("synonyms", []):
                 net.add_node(syn, label=syn.capitalize(), color=MAIN_COLOR)
                 net.add_edge(emotion, syn, color=SYN_COLOR, width=3)
 
-            # antonyms
+            # Contrari
             for ant in emotion_data.get("antonyms", []):
                 net.add_node(ant, label=ant.capitalize(), color=MAIN_COLOR)
                 net.add_edge(emotion, ant, color=ANT_COLOR, width=3)
 
-            # hyponyms
+            # Iponimi
             for hypo in emotion_data.get("hyponyms", []):
                 net.add_node(hypo, label=hypo.capitalize(), color=MAIN_COLOR)
                 net.add_edge(emotion, hypo, color=HYPONYM_COLOR, width=3)
 
-            # hypernyms
+            # Iperonimi
             for hyper in emotion_data.get("hypernyms", []):
                 net.add_node(hyper, label=hyper.capitalize(), color=MAIN_COLOR)
                 net.add_edge(emotion, hyper, color=HYPERNYM_COLOR, width=3)
 
-            # related
+            # Relazionati
             for rel in emotion_data.get("related", []):
                 net.add_node(rel, label=rel.capitalize(), color=MAIN_COLOR)
                 net.add_edge(emotion, rel, color=RELATED_COLOR, width=3)
 
-        # Salviamo la rete su un file HTML
+        # Salva la rete in un file HTML
         net.save_graph("emotion_network.html")
 
-        # Apriamo il file HTML e applichiamo la patch per rendere le variabili globali in JS
+        # Modifica e salva l'HTML per l'integrazione con PyQt
         with open("emotion_network.html", "r", encoding="utf-8") as f:
             html_content = f.read()
 
@@ -186,18 +209,32 @@ class MainController:
         """
         html_content = html_content.replace("<head>", "<head>\n" + custom_style + "\n")
 
-        # Sovrascrivi il file HTML
         with open("emotion_network.html", "w", encoding="utf-8") as f:
             f.write(html_content)
 
-        # Carichiamo nella QWebEngineView
-        full_path = os.path.join(os.getcwd(), "emotion_network.html")
-        self.emotion_view.load_html_in_view(full_path)
+        # Carica la rete nella vista convertendo il percorso assoluto in un QUrl
+        
+        PORT = 8000  # Puoi cambiarlo se necessario
+
+        # Avvia un server HTTP per servire i file locali
+        def start_http_server():
+            handler = http.server.SimpleHTTPRequestHandler
+            with socketserver.TCPServer(("", PORT), handler) as httpd:
+                print(f"Server avviato su http://localhost:{PORT}")
+                httpd.serve_forever()
+
+        # Avvia il server in un thread separato
+        threading.Thread(target=start_http_server, daemon=True).start()
+
+        # Usa l'URL con `http://localhost:8000/emotion_network.html`
+        url = QUrl(f"http://localhost:{PORT}/emotion_network.html")
+        self.emotion_view.load_html_in_view(url)
+
         self.emotion_view.set_details_html(details_text)
 
     def search_word(self):
         """
-        Evidenzia il nodo cercato, se esiste.
+        Evidenzia il nodo corrispondente alla parola cercata nella rete generata.
         """
         if not self.emotion_view:
             return
@@ -207,11 +244,11 @@ class MainController:
             QMessageBox.warning(self.emotion_view, "Attenzione", "Inserisci una parola da cercare!")
             return
 
-        # Controlliamo se la pagina HTML è già caricata
+        # Controlla se la rete è stata caricata
         current_url = self.emotion_view.web_view.url().toString()
         if not current_url.endswith("emotion_network.html"):
             self.emotion_view.alert_no_network()
             return
 
-        # Eseguiamo la funzione JS per evidenziare il nodo
+        # Esegui il codice JavaScript per evidenziare il nodo
         self.emotion_view.highlight_word_in_view(word_to_search)
