@@ -2,7 +2,7 @@
 import sys
 import os
 import json
-
+from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QFileDialog, QMessageBox  # Per dialoghi file e messaggi di avviso
 from pyvis.network import Network  # Per la creazione di reti interattive
 from view.splash_view import SplashScreenView  # Finestra di benvenuto (splash screen)
@@ -46,7 +46,7 @@ class MainController:
         self.model = MainController.EmotionModel()
         
         # Percorso predefinito al file JSON contenente i dati delle emozioni
-        self.json_file = "data\\extended_emotions.json"
+        self.json_file = os.path.join("data", "extended_emotions.json")
 
         # Creazione e visualizzazione dello splash screen
         self.splash_view = SplashScreenView(controller=self)
@@ -72,6 +72,8 @@ class MainController:
             "",
             "JSON Files (*.json);;All Files (*)"
         )
+
+        file_name = os.path.normpath(file_name)  # Normalizza il percorso
 
         if file_name:
             try:
@@ -211,7 +213,10 @@ class MainController:
             f.write(html_content)
 
         # Carica la rete nella vista
-        full_path = os.path.join(os.getcwd(), "emotion_network.html")
+        
+        full_path = os.path.normpath(os.path.join(os.getcwd(), "emotion_network.html"))
+        self.emotion_view.load_html_in_view(full_path)
+
         self.emotion_view.load_html_in_view(full_path)
         self.emotion_view.set_details_html(details_text)
 

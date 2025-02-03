@@ -1,4 +1,5 @@
 import sys
+import os
 from PyQt5.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget, QHBoxLayout,
     QPushButton, QLabel, QGraphicsDropShadowEffect, QFileDialog,
@@ -25,7 +26,7 @@ class SplashScreenView(QMainWindow):
 
         # Configurazione della finestra principale
         self.setWindowTitle("Emotion Network Visualizer")
-        self.setWindowIcon(QIcon("img/icon.png"))  # Icona della finestra
+        self.setWindowIcon(QIcon(os.path.join("img", "icon.png"))) # Icona della finestra
         self.setStyleSheet("background-color: #121212; color: white;")  # Stile della finestra
 
         self.setFixedSize(800, 500)  # Dimensioni fisse per lo splash screen
@@ -109,6 +110,7 @@ class SplashScreenView(QMainWindow):
                 padding: 15px 30px;
                 border-radius: 25px;
                 font-weight: bold;
+                border: none;
             }
             QPushButton:hover {
                 background-color: #3700B3;
@@ -127,6 +129,7 @@ class SplashScreenView(QMainWindow):
                 color: black;
                 padding: 10px 20px;
                 border-radius: 20px;
+                border: none;
             }
             QPushButton:hover {
                 background-color: #029C92;
@@ -145,6 +148,7 @@ class SplashScreenView(QMainWindow):
                 color: #ffffff;
                 padding: 10px 20px;
                 border-radius: 20px;
+                border: none;
             }
             QPushButton:hover {
                 background-color: #8A60C9;

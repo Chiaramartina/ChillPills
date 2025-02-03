@@ -2,11 +2,11 @@ import sys
 from PyQt5.QtWidgets import (
     QMainWindow, QVBoxLayout, QHBoxLayout, QWidget,
     QListWidget, QPushButton, QTextEdit, QLabel, QLineEdit,
-    QMessageBox
+    QMessageBox,
 )
 from PyQt5.QtWebEngineWidgets import QWebEngineView  # Per visualizzare il file HTML della rete
 from PyQt5.QtCore import QUrl  # Per gestire i percorsi dei file
-from PyQt5.QtGui import QIcon  # Per le icone delle finestre
+from PyQt5.QtGui import QIcon,QPalette, QColor
 from pyvis.network import Network  # Per creare e gestire reti interattive
 
 
@@ -50,6 +50,7 @@ class EmotionAppView(QMainWindow):
             color: white; 
             border-radius: 10px; 
             padding: 10px;
+            border: none;
         """)
         # Collega il pulsante al metodo nel controller
         self.plot_button.clicked.connect(self.controller.generate_selected_network)
@@ -72,6 +73,7 @@ class EmotionAppView(QMainWindow):
             color: #F0F0F0; 
             padding: 10px; 
             border-radius: 10px;
+            border: none;
         """)
 
         # Layout per la colonna sinistra
@@ -84,17 +86,19 @@ class EmotionAppView(QMainWindow):
         # Barra di ricerca
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("Cerca una parola...")
-        self.search_input.setStyleSheet("font-size: 18px; padding: 6px;")
+        self.search_input.setStyleSheet("font-size: 18px; padding: 6px; color: white;")
 
         self.search_button = QPushButton("Cerca")
         self.search_button.setFixedHeight(40)
         self.search_button.setStyleSheet("""
-            font-size: 18px; 
-            background-color: #03DAC6; 
-            color: black; 
+            font-size: 18px;
+            background-color: #9D4EDD; 
+            color: white; 
             border-radius: 8px; 
             padding: 8px;
+            border: none;
         """)
+        
         # Collega il pulsante al metodo di ricerca nel controller
         self.search_button.clicked.connect(self.controller.search_word)
 
@@ -116,6 +120,7 @@ class EmotionAppView(QMainWindow):
             color: #F0F0F0; 
             padding: 10px; 
             border-radius: 10px;
+            border: none;
         """)
         self.details.setHtml("<b>Dettagli:</b><br>")
 
@@ -190,7 +195,7 @@ class EmotionAppView(QMainWindow):
         // Controlliamo tutti i nodi
         window.nodes.get().forEach(function(n) {{
             if (n.id.toLowerCase() === target) {{
-                n.color = 'orange';
+                n.color = 'red';
                 window.nodes.update(n);
                 found = true;
             }}

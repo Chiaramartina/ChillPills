@@ -1,5 +1,6 @@
 # main.py
 import sys
+import os
 from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet
 from controller_model import MainController
