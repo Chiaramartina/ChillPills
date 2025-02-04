@@ -5,7 +5,9 @@ from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet
 from controller_model import MainController
 
-
+"""
+Main function to run the application
+"""
 def main():
     app = QApplication(sys.argv)
     apply_stylesheet(app, theme="dark_teal.xml")

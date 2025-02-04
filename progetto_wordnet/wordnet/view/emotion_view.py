@@ -122,7 +122,7 @@ class EmotionAppView(QMainWindow):
             border-radius: 10px;
             border: none;
         """)
-        self.details.setHtml("<b>Dettagli:</b><br>")
+        self.details.setHtml("<h2>Dettagli:</h2><br>")
 
         # Layout per la colonna destra
         right_layout = QVBoxLayout()
@@ -167,7 +167,11 @@ class EmotionAppView(QMainWindow):
         Carica l'HTML (della rete PyVis) nella QWebEngineView.
         :param path: Percorso del file HTML.
         """
-        self.web_view.setUrl(QUrl.fromLocalFile(path))
+        if isinstance(path, QUrl):
+            self.web_view.setUrl(path)
+        else:
+            self.web_view.setUrl(QUrl.fromLocalFile(path))
+
 
     def get_search_text(self):
         """
