@@ -31,7 +31,7 @@ class MainController:
         self.model = MainController.EmotionModel()
         
         # Percorso predefinito al file JSON contenente i dati del WordNet
-        self.json_file = os.path.join("data", "extended_emotions.json")
+        self.json_file = os.path.join("data", "default_wordnet.json")
 
         # Riferimenti per il server HTTP e il suo thread
         self.http_server = None
@@ -136,7 +136,7 @@ class MainController:
             "Emotion Network Visualizer v1.0<br>"
             "Applicazione per la visualizzazione di una rete di emozioni.<br>"
             "Sviluppato da Chiara Martina & Marco Miozza<br><br>"
-            "Contatti: marco.miozza@studio.unibo.it "
+            "Contatti: marco.miozza@studio.unibo.it & chiara.martina3@studio.unibo.it"
         )
         self.splash_view.show_info_message("Informazioni", info_text)
 

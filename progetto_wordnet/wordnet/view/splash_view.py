@@ -56,7 +56,7 @@ class SplashScreenView(QMainWindow):
                 background-color: #333333;
             }
         """)
-        close_button.setCursor(Qt.PointingHandCursor)  # Cambia il cursore quando il mouse passa sopra il pulsante
+        close_button.setCursor(Qt.PointingHandCursor)  
         close_button.clicked.connect(self.close_app)  # Collega il pulsante al metodo per chiudere l'app
 
         top_bar.addStretch()  # Aggiunge uno spazio flessibile per spostare il pulsante a destra
