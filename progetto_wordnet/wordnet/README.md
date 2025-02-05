@@ -11,15 +11,23 @@ Per eseguire questa applicazione, assicurati di avere i seguenti requisiti:
 ## Installazione
 1. Clona il repository o scarica i file del progetto:
    ```bash
-   git clone Chiaramartina/ChillPills
-      
+   git clone Chiaramartina/ChillPills   
+```
 ```
 2. Crea ed attiva un ambiente virtuale (opzionale ma consigliato):
-   ```bash
+
+   
+```bash
    python -m venv venv
+      
+```
+```bash
    source venv/bin/activate  # Su macOS/Linux
-   venv\Scripts\activate  # Su Windows
    ```
+```bash
+
+   venv\Scripts\activate  # Su Windows
+```
 3. Installa le dipendenze richieste:
 
    ```bash
